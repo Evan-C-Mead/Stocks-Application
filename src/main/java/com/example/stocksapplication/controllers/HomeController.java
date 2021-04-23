@@ -15,8 +15,4 @@ public class HomeController {
         return "home";
     }
 
-//    @GetMapping("/home")
-//    public String welcome() {
-//        return "ui/public/index";
-//    }
 }
