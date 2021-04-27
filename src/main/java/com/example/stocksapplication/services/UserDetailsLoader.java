@@ -1,6 +1,7 @@
 package com.example.stocksapplication.services;
 
 import com.example.stocksapplication.models.User;
+import com.example.stocksapplication.models.UserWithRoles;
 import com.example.stocksapplication.repositories.UserRepository;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +23,6 @@ public class UserDetailsLoader implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Username does not exist for: " + username);
         }
-        return (UserDetails) new User(user);
+        return new UserWithRoles(user);
     }
 }
