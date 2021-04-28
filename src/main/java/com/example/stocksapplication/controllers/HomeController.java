@@ -1,9 +1,13 @@
 package com.example.stocksapplication.controllers;
 
+import com.example.stocksapplication.models.User;
 import com.example.stocksapplication.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
@@ -17,8 +21,35 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String welcome() {
+    public String welcome(Model model) {
+        model.addAttribute("title", "The Home Page");
+
         return "home";
+    }
+
+    @GetMapping("/sign-up")
+    public String signUp(Model model) {
+        model.addAttribute("title", "Sign Up");
+        model.addAttribute("user", new User());
+
+        return "sign-up";
+    }
+
+    @PostMapping("/sign-up")
+    public String userSignUp(@ModelAttribute User user, Model model) {
+        model.addAttribute("title", "Sign Up");
+        String hashPW = encoder.encode(user.getPassword());
+        user.setPassword(hashPW);
+        userDao.save(user);
+
+        return "redirect:/login";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("title", "Login Page");
+
+        return "login";
     }
 
 }

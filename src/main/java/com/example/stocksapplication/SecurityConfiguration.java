@@ -33,13 +33,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //      DEFINE HOW TO LOGIN -> AND REDIRECTED AFTER LOGIN
         http.formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/dashboard")
+                .defaultSuccessUrl("/home")
                 .permitAll()
                 // DEFINE HOW TO LOGOUT
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/home")
                 // DEFINE VIEWS WHERE A USER DOESN'T NEED TO BE LOGGED IN
                 .and()
                 .authorizeRequests()
