@@ -43,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // DEFINE VIEWS WHERE A USER DOESN'T NEED TO BE LOGGED IN
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/sign-up")
+                .antMatchers("/home", "/login", "/sign-up")
                 .permitAll()
                 // DEFINE VIEW WHERE A USER MUST BE LOGGED IN
                 .and()
