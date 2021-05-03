@@ -2,6 +2,7 @@ package com.example.stocksapplication.controllers;
 
 import com.example.stocksapplication.models.User;
 import com.example.stocksapplication.repositories.UserRepository;
+import com.example.stocksapplication.services.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,12 @@ public class HomeController {
 
     private final UserRepository userDao;
     private final PasswordEncoder encoder;
+    private final UserService userService;
 
-    public HomeController(UserRepository userDao, PasswordEncoder encoder) {
+    public HomeController(UserRepository userDao, PasswordEncoder encoder, UserService userService) {
         this.userDao = userDao;
         this.encoder = encoder;
+        this.userService = userService;
     }
 
     @GetMapping("/")
